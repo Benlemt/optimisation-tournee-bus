@@ -1,23 +1,36 @@
+import java.util.List;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
 
         Engine engine = new Engine();
+        List<Node> map = engine.getMap();
+        GraphicsEngine graphicsEngine = new GraphicsEngine(map);
 
-        Bus bus = new Bus(30);
+        while (true) {
 
-        State state1 = new State(bus, new Node(1, 20, 20));
-        State state2 = new State(bus, new Node(2, 20, 20));
-        Bus bus2 = bus.getCopy();
-        bus.addPassenger(2);
-        State state3 = new State(bus, new Node(2, 20, 20));
-        State state4 = new State(bus2, new Node(1, 20, 20));
-
-
-        System.out.println(state1.equals(state2));
-        System.out.println(state1.equals(state3));
-        System.out.println(state1.equals(state4));
+            // Engine management
+            Node newNode = engine.getMap().get(new Random().nextInt(engine.getMap().size()));
+            engine.moveBus(newNode);
 
 
+            // Graphics management
+            int currentNodeID = newNode.getId();
+            String score = engine.getInfos() + " | Place dans le bus : " + Integer.toString(engine.getState().getBus().getPassengers()) + " Score : " + engine.getState().getBus().getScore();
+            graphicsEngine.setCurrentNode(currentNodeID, score);
+
+            // Pause
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            graphicsEngine.deleteCurrentNode(currentNodeID);
+
+
+        }
     }
 }

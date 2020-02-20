@@ -5,14 +5,15 @@ public class Engine {
 
     private State state;
     private List<Node> map;
+    int getOffPassengers;
+    int getOnPassengers;
 
     public Engine() {
-
         Bus bus = new Bus(20);
         this.map = new Clique(5).getListNode();
         this.state = new State(bus, this.map.get(0));
-
     }
+
 
     public void moveBus(Node newCurrentNode) {
 
@@ -25,20 +26,23 @@ public class Engine {
 
         this.state.updateCurrentNode(newCurrentNode);
 
-        int getOffPassengers = new Random().nextInt(newCurrentNode.getProbaGetOff());
-        int getOnPassengers = new Random().nextInt(newCurrentNode.getProbaGetOn());
-
-        System.out.println("GetOff" + getOffPassengers);
-        System.out.println("GetOn" + getOnPassengers);
+        this.getOffPassengers = new Random().nextInt(newCurrentNode.getProbaGetOff());
+        this.getOnPassengers = new Random().nextInt(newCurrentNode.getProbaGetOn());
 
         this.state.getOff(getOffPassengers);
         this.state.getOn(getOnPassengers);
 
     }
 
+    public String getInfos() {
+        return "(- " + Integer.toString(this.getOffPassengers) + " ; + " + Integer.toString(this.getOnPassengers) + ")";
+    }
+
     public State getState() {
         return state;
     }
+
+    public List<Node> getMap() { return this.map; }
 
     @Override
     public String toString() {

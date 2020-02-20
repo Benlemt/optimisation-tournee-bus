@@ -1,0 +1,9 @@
+node {
+    size: 15px;
+}
+
+node.current {
+    fill-color: red;
+    text-style: bold;
+    text-size: 15px;
+}
