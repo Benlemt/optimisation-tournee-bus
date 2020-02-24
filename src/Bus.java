@@ -75,8 +75,6 @@ public class Bus {
     public Bus getCopy() {
         Bus newBus = new Bus(this.passengersMax);
         newBus.setPassengers(this.passengers);
-        newBus.setScore(this.score);
-
         return newBus;
     }
 }

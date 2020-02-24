@@ -1,5 +1,4 @@
 import org.graphstream.algorithm.generator.FullGenerator;
-import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;

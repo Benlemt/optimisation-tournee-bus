@@ -11,7 +11,7 @@ public class Node {
 
 
     public Node(int id, int probaGetOn, int probaGetOff) {
-        this.neighbors = new ArrayList<Node>();
+        this.neighbors = new ArrayList<>();
         this.id = id;
         this.probaGetOn = probaGetOn;
         this.probaGetOff = probaGetOff;
@@ -51,5 +51,13 @@ public class Node {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "id=" + id +
+                '}';
     }
 }

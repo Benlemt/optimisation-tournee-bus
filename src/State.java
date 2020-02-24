@@ -16,6 +16,7 @@ public class State {
 
         int remainingPassengers;
 
+
         if (this.bus.getPassengersMax() < waitingPassengers + this.bus.getPassengers()) {
 
             int addedPassengers = this.bus.getPassengersMax() - this.bus.getPassengers();
@@ -24,10 +25,8 @@ public class State {
 
         }
         else {
-
             this.bus.addPassenger(waitingPassengers);
             remainingPassengers = 0;
-
         }
 
         this.bus.addScore(remainingPassengers);
@@ -36,12 +35,7 @@ public class State {
 
     public void getOff(int getOffPassengers) {
 
-        if (this.bus.getPassengers() < getOffPassengers) {
-            this.bus.removePassenger(bus.getPassengers());
-        }
-        else {
-            bus.removePassenger(getOffPassengers);
-        }
+        this.bus.removePassenger(Math.min(this.bus.getPassengers(), getOffPassengers));
 
     }
 
@@ -79,11 +73,13 @@ public class State {
         return Objects.hash(getBus(), getCurrentNode());
     }
 
+
     @Override
     public String toString() {
         return "State{" +
-                "bus =" + bus.getPassengers() + " | " + bus.getScore() +
+                "bus =" + bus.getPassengers() +
                 ", currentNode=" + currentNode.getId() +
                 '}';
     }
+
 }

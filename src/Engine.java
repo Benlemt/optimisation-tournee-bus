@@ -17,14 +17,7 @@ public class Engine {
 
     public void moveBus(Node newCurrentNode) {
 
-        /**
-        List<Node> neighborsNodes = this.state.getCurrentNode().getNeighbors();
-        int newNodeID = new Random().nextInt(neighborsNodes.size());
-        Node newCurrentNode = neighborsNodes.get(newNodeID);
-        **/
-
-
-        this.state.updateCurrentNode(newCurrentNode);
+        this.state = new State(this.state.getBus().getCopy(), newCurrentNode);
 
         this.getOffPassengers = new Random().nextInt(newCurrentNode.getProbaGetOff());
         this.getOnPassengers = new Random().nextInt(newCurrentNode.getProbaGetOn());
@@ -35,7 +28,7 @@ public class Engine {
     }
 
     public String getInfos() {
-        return "(- " + Integer.toString(this.getOffPassengers) + " ; + " + Integer.toString(this.getOnPassengers) + ")";
+        return "(- " + this.getOffPassengers + " ; + " + this.getOnPassengers + ")";
     }
 
     public State getState() {
